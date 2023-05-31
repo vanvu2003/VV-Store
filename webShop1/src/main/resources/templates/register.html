@@ -1,0 +1,176 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="/css/login&register/style.css">
+    <style>
+        .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .inputfile+label {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: white;
+            background-color: rgb(255, 153, 0);
+            display: inline-block;
+            cursor: pointer;
+            padding-left: 19px;
+            padding-right: 19px;
+            border-radius: 7px;
+        }
+
+        .inputfile+label:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="ftco-section">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img" style="background-image: url(img/poster-register.png);">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex text-center">
+                            <div class="w-100">
+                                <h1 class="mb-4">Sign Up</h1>
+                            </div>
+                        </div>
+                        <form th:action="@{/register}" class="signin-form" method="post" th:object="${user}"
+                            enctype="multipart/form-data">
+                            <div class="form-group mb-3 text-center">
+                                <img id="preview" src="img/logo-default.jpg"
+                                    style="width: 200px; height: 200px; border-radius: 50%;">
+                            </div>
+                            <div class="form-group mb-3 text-center">
+                                <input type="file" name="image" id="file" class="inputfile"
+                                    onchange="handleFileSelect(event)" th:field="*{image}">
+                                <label for="file">Choose file</label>
+                            </div>
+                            <div class="row">
+                                <div class="form-group mb-3 mr-2 pl-3">
+                                    <label class="label" for="name" style="font-size: 18px;">Username*
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="Username"
+                                        style="font-size: 18px; width: 250px;" th:field="*{username}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="" style="font-size: 18px;">Phone*</label>
+                                    <input type="text" class="form-control" placeholder="Phone Number"
+                                        style="font-size: 18px;width: 250px;" th:field="*{phone}">
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="" style="font-size: 18px;">Fullname*</label>
+                                <input type="text" class="form-control" placeholder="Fullname" style="font-size: 18px;"
+                                    th:field="*{fullname}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="" style="font-size: 18px;">Email*</label>
+                                <input type="email" class="form-control" placeholder="Email" style="font-size: 18px;"
+                                    th:field="*{email}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" style="font-size: 18px;">Password*</label>
+                                <input type="password" class="form-control" placeholder="Password"
+                                    style="font-size: 18px;" th:field="*{password}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" style="font-size: 18px;">Confirm Password*</label>
+                                <input type="password" class="form-control" placeholder="Confirm password"
+                                    style="font-size: 18px;" th:field="*{confirmPass}">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="" style="font-size: 18px;">Address</label>
+                                <input type="text" class="form-control" placeholder="Address" style="font-size: 18px;"
+                                    th:field="*{address}">
+                            </div>
+                            <!-- <div class="form-group mb-3">
+                                <label class="label" for="" style="font-size: 18px;">Role</label>
+
+                                <div class="form-check">
+                                    <input class="form-check-inline" type="radio" name="role" id="exampleRadios1"
+                                        th:field="*{role}" th:value="User" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        User
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-inline" type="radio" name="role" id="exampleRadios2"
+                                       th:field="*{role}" th:value ="Admin" >
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Admin
+                                    </label>
+                                </div>
+                            </div> -->
+                            <div class="form-group mb-3">
+                                <p style="color: red;">Chú ý: * là những thông tin bắt buộc</p>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign
+                                    Up</button>
+                            </div>
+                            <div class="form-group d-md-flex">
+                            </div>
+                            <p class="text-center">Not a member? <a data-toggle="tab" href="/login">Sign In</a></p>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/login&register/jquery.min.js"></script>
+    <script src="/js/login&register/popper.js"></script>
+    <script src="/js/login&register/bootstrap.min.js"></script>
+    <script src="/js/login&register/main.js"></script>
+    <script>
+        function handleFileSelect(event) {
+            // Lấy thông tin về các file ảnh được chọn
+            var files = event.target.files;
+
+            // Duyệt qua từng file ảnh và hiển thị chúng lên thẻ img
+            for (var i = 0; i < files.length; i++) {
+                // Tạo một đối tượng FileReader để đọc file ảnh
+                var reader = new FileReader();
+
+                // Định nghĩa hàm callback được gọi khi FileReader đọc xong file ảnh
+                reader.onload = function (event) {
+                    // Tạo một thẻ img để hiển thị ảnh
+                    var img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.style.width = '200px';
+                    img.style.height = '200px';
+
+                    // Thay đổi đường dẫn của ảnh trên thẻ img
+                    var preview = document.getElementById('preview');
+                    preview.src = img.src;
+                }
+
+                // Đọc file ảnh
+                reader.readAsDataURL(files[i]);
+            }
+        }
+    </script>
+</body>
+
+</html>
